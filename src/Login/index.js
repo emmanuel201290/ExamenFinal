@@ -3,14 +3,19 @@ import React from "react";
 import { Formik } from "formik";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { Wrapper } from "./styles";
+import { useHistory, Redirect } from "react-router-dom";
+import { useAuth } from "../utilities/useAuth";
 
 export default () => {
+  const auth = useAuth();
+
+  const history = useHistory();
   return (
     <Wrapper>
       <Formik
         initialValues={{ username: "", password: "" }}
         onSubmit={fields => {
-          console.log("");
+          auth.login(fields, () => history.push("/"));
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
