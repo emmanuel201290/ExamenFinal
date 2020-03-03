@@ -1,0 +1,21 @@
+.Nav ul {
+  background: #637580;
+  display: flex;
+  height: 100px;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+.Nav ul li {
+  margin-left: 20px;
+}
+
+.Nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: large;
+}
+
+.Nav ul li a:hover {
+  background-color: blueviolet;
+}
