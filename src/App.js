@@ -4,6 +4,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
 import ProtectedRoute from "./utilities/ProtectedRouter";
+import Formulario from "./Formulario";
 
 export default function App() {
   return (
@@ -16,11 +17,16 @@ export default function App() {
           <li>
             <Link to="/">Home (/)</Link>
           </li>
+          <li>
+            <Link to="/Formulario">Formulario (Preguntas)</Link>
+          </li>
         </ul>
       </nav>
 
       <Switch>
         <Route path="/Login" component={Login} />
+        <Route path="/Formulario" component={Formulario}></Route>
+
         <ProtectedRoute>
           <Home />
         </ProtectedRoute>
