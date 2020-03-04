@@ -3,6 +3,7 @@ import "./App.css";
 import { Switch, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
+import ProtectedRoute from "./utilities/ProtectedRouter";
 
 export default function App() {
   return (
@@ -20,7 +21,9 @@ export default function App() {
 
       <Switch>
         <Route path="/Login" component={Login} />
-        <Route path="/" component={Home} />
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
       </Switch>
     </div>
   );

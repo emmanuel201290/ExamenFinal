@@ -3,7 +3,7 @@ import React from "react";
 import { Formik } from "formik";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { Wrapper } from "./styles";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useAuth } from "../utilities/useAuth";
 
 export default () => {
@@ -40,7 +40,13 @@ export default () => {
                 onChange={handleChange}
               />
             </FormGroup>
-            <Button color="primary">Iniciar sesión</Button>
+            {auth.isAuthenticated ? (
+              <Button color="primary" onClick={auth.logout}>
+                Cerrar sesion
+              </Button>
+            ) : (
+              <Button color="primary">Iniciar sesión</Button>
+            )}
           </Form>
         )}
       </Formik>
