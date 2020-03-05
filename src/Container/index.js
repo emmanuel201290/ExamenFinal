@@ -1,33 +1,49 @@
-import React from "react";
-import { Form, Label, Input } from "reactstrap";
+import React, { useState } from "react";
+import { Form, Label, Input, Button } from "reactstrap";
 import styled from "styled-components";
-
-export const handleChange = e => {
-  console.log(e.currentTarget);
-  console.log(document.querySelector("select").Input);
-  console.log(document.querySelector("select").textContent);
-};
 
 const Principal = styled.div`
   background: #f08080;
-  border: 2px solid;
   margin: 2px;
+  height: 80px;
+  border-radius: 17px 17px 17px 17px;
 `;
 
-export default ({ titulo, contenido }) => {
+export default ({ titulo, contenido, indice }) => {
+  const [isSelected, setSelected] = useState();
+  const [isEmpty, setEmpty] = useState(false);
+
+  const handleChange = e => {
+    setSelected(e.target.value);
+  };
+
+  const validEmpty = () => {
+    setEmpty(isSelected);
+  };
+
   return (
     <Principal>
       <Form style={{ margin: "10px" }}>
-        <Label>
+        <Label style={{ color: "" }}>
           {titulo}
-          <br></br>
-
-          <Input type="select" name="select" id={"1"} onChange={handleChange}>
+          <Input type="select" name="select" id="1" onChange={handleChange}>
             {contenido.opciones.map(item => (
-              <option value={item.esVerdadera}>{item.nombreOpcion}</option>
+              <option value={item.esVerdadera} selected="selected">
+                {item.nombreOpcion}
+              </option>
             ))}
           </Input>
         </Label>
+        <Button style={{ margin: "10px" }} onClick={validEmpty}>
+          Siguiente
+        </Button>
+        {isEmpty === "" ? (
+          <Label style={{ color: "red" }}>
+            <h4>{"Seleccione un valor"}</h4>
+          </Label>
+        ) : (
+          ""
+        )}
       </Form>
     </Principal>
   );

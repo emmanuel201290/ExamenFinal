@@ -90,11 +90,31 @@ export default () => {
   };
   return (
     <Wrapper>
-      <Container titulo={"Cuanto es 2 * 2 ?"} contenido={contenido} />
-      <Container titulo={"Cuanto es 2 * 5 ?"} contenido={contenido2} />
-      <Container titulo={"Cuanto es 90 - 90 ?"} contenido={contenido3} />
-      <Container titulo={"Cuanto es 7 + 1 ?"} contenido={contenido4} />
-      <Container titulo={"Cuanto es 10 * 2 ?"} contenido={contenido5} />
+      <Container
+        titulo={"Cuanto es 2 * 2 ?"}
+        contenido={contenido}
+        indice={1}
+      />
+      <Container
+        titulo={"Cuanto es 2 * 5 ?"}
+        contenido={contenido2}
+        indice={2}
+      />
+      <Container
+        titulo={"Cuanto es 9 - 9 ?"}
+        contenido={contenido3}
+        indice={3}
+      />
+      <Container
+        titulo={"Cuanto es 7 + 1 ?"}
+        contenido={contenido4}
+        indice={4}
+      />
+      <Container
+        titulo={"Cuanto es 10 * 2 ?"}
+        contenido={contenido5}
+        indice={5}
+      />
     </Wrapper>
   );
 };
