@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Form, Label, Input, Button } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import styled from "styled-components";
+import { Formik } from "formik";
+import "./style.css";
 
 const Principal = styled.div`
   background: #f08080;
-  margin: 2px;
-  height: 80px;
+  height: 100%;
   border-radius: 17px 17px 17px 17px;
 `;
 
@@ -13,7 +14,7 @@ export default ({ titulo, contenido, indice }) => {
   const [isSelected, setSelected] = useState();
   const [isEmpty, setEmpty] = useState(false);
 
-  const handleChange = e => {
+  const handleSelected = e => {
     setSelected(e.target.value);
   };
 
@@ -23,28 +24,47 @@ export default ({ titulo, contenido, indice }) => {
 
   return (
     <Principal>
-      <Form style={{ margin: "10px" }}>
-        <Label style={{ color: "" }}>
-          {titulo}
-          <Input type="select" name="select" id="1" onChange={handleChange}>
-            {contenido.opciones.map(item => (
-              <option value={item.esVerdadera} selected="selected">
-                {item.nombreOpcion}
-              </option>
-            ))}
-          </Input>
-        </Label>
-        <Button style={{ margin: "10px" }} onClick={validEmpty}>
-          Siguiente
-        </Button>
-        {isEmpty === "" ? (
-          <Label style={{ color: "red" }}>
-            <h4>{"Seleccione un valor"}</h4>
-          </Label>
-        ) : (
-          ""
-        )}
-      </Form>
+      <div className="contenedor">
+        <Formik
+          initialValues={{ username: "", password: "" }}
+          onSubmit={validEmpty}
+          className="form-style"
+        >
+          {({ values, handleChange, handleSubmit, errors }) => (
+            <Form onSubmit={handleSubmit} className="style-Form">
+              <FormGroup>
+                <Label htmlFor="username" className="style-Label">
+                  {titulo}
+                </Label>
+                <Input
+                  id="username"
+                  type="select"
+                  name="username"
+                  value={values.username}
+                  onChange={handleChange}
+                  onClick={handleSelected}
+                >
+                  {contenido.opciones.map(item => (
+                    <option value={item.esVerdadera} selected="selected">
+                      {item.nombreOpcion}
+                    </option>
+                  ))}
+                </Input>
+              </FormGroup>
+              <Button color="primary" className="btn-style">
+                Siguiente
+              </Button>
+              {isEmpty === "" ? (
+                <Label style={{ color: "red" }}>
+                  <h5>{"Seleccione un valor"}</h5>
+                </Label>
+              ) : (
+                ""
+              )}
+            </Form>
+          )}
+        </Formik>
+      </div>
     </Principal>
   );
 };

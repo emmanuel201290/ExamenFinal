@@ -1,0 +1,13 @@
+.contenedor {
+  margin: 10px;
+}
+
+.btn-style {
+  display: inline-block;
+  margin: 5px;
+}
+
+.style-Label {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: larger;
+}
