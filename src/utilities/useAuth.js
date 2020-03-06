@@ -10,6 +10,7 @@ export const AuthProvider = props => {
   const history = useHistory();
   const sesion = validarSesion();
   const [isAuthenticated, setIsAuthenticated] = useState(sesion);
+  const [isFinish, setIsFinish] = useState(false);
 
   const login = async (user, callback) => {
     const res = await axios.post(
@@ -32,8 +33,14 @@ export const AuthProvider = props => {
     history.push("/Login");
   };
 
+  const finishForm = valor => {
+    setIsFinish(valor);
+  };
+
   return (
-    <Context.Provider value={{ isAuthenticated, login, logout }}>
+    <Context.Provider
+      value={{ isAuthenticated, login, logout, isFinish, finishForm }}
+    >
       {props.children}
     </Context.Provider>
   );

@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import styled from "styled-components";
 import { Formik } from "formik";
 import "./style.css";
+import { useAuth } from "../utilities/useAuth";
 
 const Principal = styled.div`
   background: #f08080;
@@ -14,6 +15,7 @@ export default ({ titulo, contenido, nextCount }) => {
   const [isEmpty, setEmpty] = useState();
   const [isIndice, setIndice] = useState(1);
 
+  const auth = useAuth();
   const handleSelected = e => {
     setEmpty(e.target.value);
   };
@@ -23,12 +25,16 @@ export default ({ titulo, contenido, nextCount }) => {
       if (isIndice < 5) {
         setIndice(isIndice + 1);
         nextCount(isIndice);
+        auth.finishForm(false);
+      } else {
+        auth.finishForm(true);
       }
     }
   };
 
   return (
     <Principal>
+      {}
       <div className="contenedor">
         <Formik
           initialValues={{ opcionText: "" }}
@@ -42,7 +48,7 @@ export default ({ titulo, contenido, nextCount }) => {
                   {titulo}
                 </Label>
                 <Input
-                  id={1}
+                  id={isIndice}
                   type="select"
                   name="opcionText"
                   value={values.opcionText}
@@ -50,7 +56,7 @@ export default ({ titulo, contenido, nextCount }) => {
                   onClick={handleSelected}
                 >
                   {contenido.map(item => (
-                    <option value={item.esVerdadera} selected="selected">
+                    <option value={item.esVerdadera} select="selected">
                       {item.nombreOpcion}
                     </option>
                   ))}
@@ -70,6 +76,14 @@ export default ({ titulo, contenido, nextCount }) => {
               {isEmpty === "" ? (
                 <Label style={{ color: "red" }}>
                   <h5>{"Seleccione un valor"}</h5>
+                </Label>
+              ) : (
+                ""
+              )}
+
+              {auth.isFinish ? (
+                <Label style={{ color: "#0A2FB7" }}>
+                  <h5>{"Formulario Finalizado"}</h5>
                 </Label>
               ) : (
                 ""
