@@ -1,119 +1,113 @@
-import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import React, { useState } from "react";
 import { Wrapper } from "../Login/styles";
-import Container from "../Container/index";
+import ShowNextComponent from "../Container/showNextComponent";
 
 export default () => {
-  const contenido = {
-    opciones: [
-      {
-        nombreOpcion: "",
-        esVerdadera: null
-      },
-      {
-        nombreOpcion: "4",
-        esVerdadera: true
-      },
-      {
-        nombreOpcion: "15",
-        esVerdadera: false
-      }
-    ]
+  const [isCount, setCount] = useState(0);
+
+  const nextCount = indice => {
+    setCount(indice);
   };
 
-  const contenido2 = {
-    opciones: [
-      {
-        nombreOpcion: "",
-        esVerdadera: null
-      },
-      {
-        nombreOpcion: "8",
-        esVerdadera: false
-      },
-      {
-        nombreOpcion: "10",
-        esVerdadera: true
-      }
-    ]
-  };
+  const contenido = [
+    {
+      pregunta: "Cuanto es 2 * 2 ?",
+      id: 0,
+      opciones: [
+        {
+          nombreOpcion: "",
+          esVerdadera: null
+        },
+        {
+          nombreOpcion: "4",
+          esVerdadera: true
+        },
+        {
+          nombreOpcion: "15",
+          esVerdadera: false
+        }
+      ]
+    },
+    {
+      pregunta: "Cuanto es 2 * 5 ?",
+      id: 1,
+      opciones: [
+        {
+          nombreOpcion: "",
+          esVerdadera: null
+        },
+        {
+          nombreOpcion: "8",
+          esVerdadera: false
+        },
+        {
+          nombreOpcion: "10",
+          esVerdadera: true
+        }
+      ]
+    },
+    {
+      pregunta: "Cuanto es 9 - 9 ?",
+      id: 2,
+      opciones: [
+        {
+          nombreOpcion: "",
+          esVerdadera: null
+        },
+        {
+          nombreOpcion: "2",
+          esVerdadera: false
+        },
+        {
+          nombreOpcion: "0",
+          esVerdadera: true
+        }
+      ]
+    },
+    {
+      pregunta: "Cuanto es 7 + 1 ?",
+      id: 3,
+      opciones: [
+        {
+          nombreOpcion: "",
+          esVerdadera: null
+        },
+        {
+          nombreOpcion: "8",
+          esVerdadera: true
+        },
+        {
+          nombreOpcion: "10",
+          esVerdadera: false
+        }
+      ]
+    },
+    {
+      pregunta: "Cuanto es 18 * 2 ?",
+      id: 4,
+      opciones: [
+        {
+          nombreOpcion: "",
+          esVerdadera: null
+        },
+        {
+          nombreOpcion: "10",
+          esVerdadera: false
+        },
+        {
+          nombreOpcion: "20",
+          esVerdadera: true
+        }
+      ]
+    }
+  ];
 
-  const contenido3 = {
-    opciones: [
-      {
-        nombreOpcion: "",
-        esVerdadera: null
-      },
-      {
-        nombreOpcion: "2",
-        esVerdadera: false
-      },
-      {
-        nombreOpcion: "0",
-        esVerdadera: true
-      }
-    ]
-  };
-
-  const contenido4 = {
-    opciones: [
-      {
-        nombreOpcion: "",
-        esVerdadera: null
-      },
-      {
-        nombreOpcion: "8",
-        esVerdadera: true
-      },
-      {
-        nombreOpcion: "10",
-        esVerdadera: false
-      }
-    ]
-  };
-
-  const contenido5 = {
-    opciones: [
-      {
-        nombreOpcion: "",
-        esVerdadera: null
-      },
-      {
-        nombreOpcion: "18",
-        esVerdadera: false
-      },
-      {
-        nombreOpcion: "20",
-        esVerdadera: true
-      }
-    ]
-  };
   return (
     <Wrapper>
-      <Container
-        titulo={"Cuanto es 2 * 2 ?"}
+      <ShowNextComponent
         contenido={contenido}
-        indice={1}
-      />
-      <Container
-        titulo={"Cuanto es 2 * 5 ?"}
-        contenido={contenido2}
-        indice={2}
-      />
-      <Container
-        titulo={"Cuanto es 9 - 9 ?"}
-        contenido={contenido3}
-        indice={3}
-      />
-      <Container
-        titulo={"Cuanto es 7 + 1 ?"}
-        contenido={contenido4}
-        indice={4}
-      />
-      <Container
-        titulo={"Cuanto es 10 * 2 ?"}
-        contenido={contenido5}
-        indice={5}
+        nextCount={nextCount}
+        isCount={isCount}
       />
     </Wrapper>
   );

@@ -10,50 +10,63 @@ const Principal = styled.div`
   border-radius: 17px 17px 17px 17px;
 `;
 
-export default ({ titulo, contenido, indice }) => {
-  const [isSelected, setSelected] = useState();
-  const [isEmpty, setEmpty] = useState(false);
+export default ({ titulo, contenido, nextCount }) => {
+  const [isEmpty, setEmpty] = useState();
+  const [isIndice, setIndice] = useState(1);
 
   const handleSelected = e => {
-    setSelected(e.target.value);
+    setEmpty(e.target.value);
   };
 
   const validEmpty = () => {
-    setEmpty(isSelected);
+    if (isEmpty || isEmpty === false) {
+      if (isIndice < 5) {
+        setIndice(isIndice + 1);
+        nextCount(isIndice);
+      }
+    }
   };
 
   return (
     <Principal>
       <div className="contenedor">
         <Formik
-          initialValues={{ username: "", password: "" }}
+          initialValues={{ opcionText: "" }}
           onSubmit={validEmpty}
           className="form-style"
         >
-          {({ values, handleChange, handleSubmit, errors }) => (
+          {({ values, handleChange, handleSubmit }) => (
             <Form onSubmit={handleSubmit} className="style-Form">
               <FormGroup>
-                <Label htmlFor="username" className="style-Label">
+                <Label htmlFor="titulo" className="style-Label">
                   {titulo}
                 </Label>
                 <Input
-                  id="username"
+                  id={1}
                   type="select"
-                  name="username"
-                  value={values.username}
+                  name="opcionText"
+                  value={values.opcionText}
                   onChange={handleChange}
                   onClick={handleSelected}
                 >
-                  {contenido.opciones.map(item => (
+                  {contenido.map(item => (
                     <option value={item.esVerdadera} selected="selected">
                       {item.nombreOpcion}
                     </option>
                   ))}
                 </Input>
               </FormGroup>
-              <Button color="primary" className="btn-style">
-                Siguiente
-              </Button>
+
+              {isIndice <= 4 ? (
+                <Button color="primary" className="btn-style">
+                  Siguiente
+                </Button>
+              ) : (
+                <Button color="primary" className="btn-style">
+                  Finalizar
+                </Button>
+              )}
+
               {isEmpty === "" ? (
                 <Label style={{ color: "red" }}>
                   <h5>{"Seleccione un valor"}</h5>
