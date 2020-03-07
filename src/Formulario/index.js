@@ -83,7 +83,7 @@ export default () => {
       ]
     },
     {
-      pregunta: "Cuanto es 18 * 2 ?",
+      pregunta: "Cuanto es 10 * 2 ?",
       id: 4,
       opciones: [
         {
@@ -99,6 +99,11 @@ export default () => {
           esVerdadera: true
         }
       ]
+    },
+    {
+      pregunta: "Presione finalizar para ver las preguntas seleccionadas",
+      id: 5,
+      opciones: []
     }
   ];
 

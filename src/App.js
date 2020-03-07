@@ -5,6 +5,7 @@ import Login from "./Login";
 import Home from "./Home";
 import ProtectedRoute from "./utilities/ProtectedRouter";
 import Formulario from "./Formulario";
+import Resultado from "./Resultado";
 
 export default function App() {
   return (
@@ -15,10 +16,13 @@ export default function App() {
             <Link to="/Login"> Login</Link>
           </li>
           <li>
-            <Link to="/">Home (/)</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/Formulario">Formulario (Preguntas)</Link>
+            <Link to="/Formulario">Formulario</Link>
+          </li>
+          <li>
+            <Link to="/Resultado">Resultado</Link>
           </li>
         </ul>
       </nav>
@@ -26,6 +30,7 @@ export default function App() {
       <Switch>
         <Route path="/Login" component={Login} />
         <Route path="/Formulario" component={Formulario}></Route>
+        <Route path="/Resultado" component={Resultado}></Route>
 
         <ProtectedRoute>
           <Home />
